@@ -147,12 +147,12 @@ The application includes comprehensive error handling for:
 
 The executable JAR file is located at: `target/webhook-app.jar`
 
-**Download Link:** [Raw JAR Download](https://github.com/YOUR_USERNAME/webhook-app/raw/main/target/webhook-app.jar)
+**Download Link:** [Raw JAR Download](https://github.com/Sasidhar-007/webhook-app/raw/main/target/webhook-app.jar)
 
 ## 🔗 Submission Links
 
-- **GitHub Repository:** https://github.com/YOUR_USERNAME/webhook-app.git
-- **JAR Download:** https://github.com/YOUR_USERNAME/webhook-app/raw/main/target/webhook-app.jar
+- **GitHub Repository:** https://github.com/Sasidhar-007/Bajaj-Finserv-Health-Qualifier-1.git
+- **JAR Download:** https://github.com/Sasidhar-007/webhook-app/raw/main/target/webhook-app.jar
 
 ## 👨‍💻 Author
 
@@ -166,4 +166,3 @@ This project is created for Bajaj Finserv Health technical assessment.
 
 ---
 
-**Note:** Make sure to update the personal details and GitHub links before submission!
