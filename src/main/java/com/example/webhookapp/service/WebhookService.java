@@ -1,9 +1,12 @@
 package com.example.webhookapp.service;
 
-import java.net.http.HttpHeaders;
+import com.example.webhookapp.dto.WebhookRequest;
+import com.example.webhookapp.dto.WebhookResponse;
+import com.example.webhookapp.dto.SolutionRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +34,7 @@ public class WebhookService {
                 System.out.println("Access Token: " + webhookResponse.getAccessToken());
                 
                 // Step 2: Solve SQL problem based on registration number
-                String sqlQuery = solveSqlProblem("22BCE9583"); // You can change this registration number
+                String sqlQuery = solveSqlProblem("22BCE9583"); // Update with your registration number
                 System.out.println("Generated SQL Query: " + sqlQuery);
                 
                 // Step 3: Submit solution
@@ -50,8 +53,8 @@ public class WebhookService {
 
     private WebhookResponse generateWebhook() {
         try {
-            // Create request body
-            WebhookRequest request = new WebhookRequest("John Doe", "REG12347", "john@example.com");
+            // Create request body - UPDATE WITH YOUR ACTUAL DETAILS
+            WebhookRequest request = new WebhookRequest("Sasidhar", "22BCE9583", "sasidhar.22bce9583@vitapstudent.ac.in");
             
             // Set headers
             HttpHeaders headers = new HttpHeaders();
@@ -86,13 +89,13 @@ public class WebhookService {
         System.out.println("Last two digits: " + lastTwoDigits);
         System.out.println("Question type: " + (lastTwoDigitsInt % 2 == 1 ? "Odd (Question 1)" : "Even (Question 2)"));
         
-        // Based on the provided document, this is Question 1 (for odd registration numbers)
+        // 22BCE9583 ends with 83 (odd), so this is Question 1
         // Find the highest salary not credited on 1st day of any month
         String sqlQuery = """
             SELECT 
                 p.AMOUNT as SALARY,
                 CONCAT(e.FIRST_NAME, ' ', e.LAST_NAME) as NAME,
-                FLOOR(DATEDIFF(CURDATE(), e.DOB) / 365.25) as AGE,
+                TIMESTAMPDIFF(YEAR, e.DOB, CURDATE()) as AGE,
                 d.DEPARTMENT_NAME
             FROM PAYMENTS p
             INNER JOIN EMPLOYEE e ON p.EMP_ID = e.EMP_ID
@@ -112,7 +115,7 @@ public class WebhookService {
             // Set headers
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
-            headers.set("Authorization", accessToken);
+            headers.set("Authorization", "Bearer " + accessToken); // Added "Bearer " prefix
             
             // Create HTTP entity
             HttpEntity<SolutionRequest> entity = new HttpEntity<>(request, headers);
